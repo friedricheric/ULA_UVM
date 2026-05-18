@@ -16,7 +16,7 @@ class alu_monitor extends uvm_monitor;
     `uvm_info("START_PHASE", $sformatf("Starting build_phase for %s", get_full_name()), UVM_NONE)
 
     if (!uvm_config_db#(virtual alu_if)::get(this, "", "vif", vif))
-      `uvm_fatal("MON_IF", $sformatf("Error to get vif for %s", 												 get_full_name))
+      `uvm_fatal("MON_IF", $sformatf("Error to get vif for %s", get_full_name))
 
     if (!uvm_config_db#(uvm_active_passive_enum)::get(this, "", "is_active", is_active))
       `uvm_fatal("MON_BUILD", $sformatf("Error to get is_active for %s", get_full_name))

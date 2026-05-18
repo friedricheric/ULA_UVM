@@ -36,6 +36,8 @@ class alu_driver extends uvm_driver #(alu_tx);
       forever begin
       	seq_item_port.get_next_item(req);
 
+        //repeat(req.delay) @(posedge vif.clk);
+
         drive_item_active(req);
 
       	seq_item_port.item_done();
@@ -60,6 +62,10 @@ class alu_driver extends uvm_driver #(alu_tx);
       @(posedge vif.clk);
 
     vif.rst <= 1'b0;
+    @(posedge vif.clk);
+    vif.rst <= 1'b1;
+    @(posedge vif.clk);
+    vif.rst <= 1'b0;
   endtask : initial_rst
 
   task drive_item_active(alu_tx req);
@@ -78,7 +84,7 @@ class alu_driver extends uvm_driver #(alu_tx);
   endtask : drive_item_active
 
   task drive_item_passive();
-    @(negedge vif.clk);
+    @(posedge vif.clk);
     vif.ready_ip <= 1'b0;
 
     while(vif.valid_op == 0)

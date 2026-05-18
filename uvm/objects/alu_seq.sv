@@ -8,6 +8,12 @@ class alu_seq extends uvm_sequence;
   string report_id;
 
   int num_samples = 10;
+  rand int unsigned delay;
+
+  //  Group: Constraints
+  constraint c_delay {
+    delay inside {[0:5]};
+  }
 
   //  Group: Functions
   task body();
@@ -22,9 +28,10 @@ class alu_seq extends uvm_sequence;
 
     start_item(m_item);
 
-    if (!m_item.randomize())
-      `uvm_fatal("SEQ_RAND", $sformatf("Unable to randomize for %s",
-                get_full_name()))
+    if (!m_item.randomize() with {
+      delay == local::delay;
+    })
+      `uvm_fatal(report_id, $sformatf("Unable to randomize for %s \n", this.get_full_name()))
 
     m_item.timestamp = $realtime();
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<refinement-file-root>
+  <information comment-version="2" creation-time="Mon 18 May 2026 20:19:12 -03" creator="eric.friedrich" csCheck="true" modified-by="eric.friedrich" modify-time="Mon 18 May 2026 20:27:10 -03" save-ref-method="seq" tool-version="Cadence Verisium Manager23.09" rules-signature-c="58344db91c5b56c0cdfcf0ba691c350">
+    <ucm-files>
+      <ucm-file domain="icc" modelCheckSum="380614252" path="cov_work/scope/icc_16afb66c_10025769.ucm"></ucm-file>
+    </ucm-files>
+    <ccf-files></ccf-files>
+  </information>
+  <rules>
+    <rule ccType="inst" ccfFlagsMask="448-42" comment="1" domain="icc" entityName="top_tb/dut/23" entityType="block" excTime="1779146826" file="0" im-checksum="546222828" line="80" name="exclude_covered" reviewer="3" text="end else if(available_r) begin" user="2" vscope="default"></rule>
+    <rule ccType="inst" ccfFlagsMask="448-42" comment="4" domain="icc" entityName="top_tb/dut/7" entityType="block" excTime="1779146503" file="0" im-checksum="546222828" line="51" name="exclude_covered" reviewer="3" text="end else if(~valid_ip || valid_int_ip_r) begin" user="2" vscope="default"></rule>
+    <rule ccType="inst" comment="5" domain="icc" entityName="top_tb/dut/data_ip_1_w" entityType="toggle" excTime="1779146583" name="exclude_covered" reviewer="3" user="2" vscope="default"></rule>
+    <rule ccType="inst" comment="5" domain="icc" entityName="top_tb/dut/data_ip_2_w" entityType="toggle" excTime="1779146592" name="exclude_covered" reviewer="3" user="2" vscope="default"></rule>
+    <rule ccType="inst" ccfFlagsMask="448-42" comment="6" domain="icc" entityName="top_tb/dut/1" entityType="top-expr" excTime="1779146717" file="0" im-checksum="661209500" line="51" name="exclude_covered" reviewer="7" text="(~ valid_ip) || valid_int_ip_r" ung="0" user="2" vscope="default"></rule>
+  </rules>
+  <cache-map>
+    <cache-entry key="0" value="/home/ciinovador/eric.friedrich/Documents/MIC61/uvm_ula/rtl/design.sv"></cache-entry>
+    <cache-entry key="1" value="2) Block 23 (implicit else linha 80): `else if(available_r)` redundante, o `if(~available_r)` anterior ja garante available_r=1 neste branch. Implicit else unreachable."></cache-entry>
+    <cache-entry key="2" value="eric.friedrich"></cache-entry>
+    <cache-entry key="3" value="Eric"></cache-entry>
+    <cache-entry key="4" value="1) Block 7 (implicit else linha 51): `else if(~valid_ip || valid_int_ip_r)` expressao sempre verdadeira quando valid_ip=0, ja que ~valid_ip=1. OR sempre verdadeiro. Implicit else  unreachable."></cache-entry>
+    <cache-entry key="5" value="data_ip_1_w e data_ip_2_w (design.sv linhas 27-28) sao wires declarados mas nunca conectados: a instanciacao alu_core usa data_ip_1_r/data_ip_2_r diretamente (linhas 36-37). Esses sinais ficam em X por toda a simulacao e nunca transitam. Toggle estruturalmente inalcancavel."></cache-entry>
+    <cache-entry key="6" value="3) Expression `(~valid_ip) || valid_int_ip_r` linha 51: Avaliada apenas com valid_ip=0, T1 nunca pode ser 1."></cache-entry>
+    <cache-entry key="7" value="unknown"></cache-entry>
+  </cache-map>
+</refinement-file-root>

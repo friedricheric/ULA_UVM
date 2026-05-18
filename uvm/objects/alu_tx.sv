@@ -22,6 +22,7 @@ class alu_tx extends uvm_sequence_item;
   // Outputs
   bit [(`DATA_WIDTH*2 - 1): 0]	data_op;
 
+  rand int unsigned delay;
   time timestamp;
 
   `uvm_object_utils_begin(alu_tx)
@@ -29,6 +30,7 @@ class alu_tx extends uvm_sequence_item;
   	`uvm_field_int    (data_ip_2,     UVM_ALL_ON|UVM_DEC)
   	`uvm_field_enum   (sel_t, sel_ip, UVM_ALL_ON)
   	`uvm_field_int    (data_op,  	    UVM_ALL_ON|UVM_DEC)
+    `uvm_field_int    (delay,         UVM_ALL_ON|UVM_TIME)
     `uvm_field_int    (timestamp,     UVM_ALL_ON|UVM_TIME)
   `uvm_object_utils_end
 
@@ -51,6 +53,10 @@ class alu_tx extends uvm_sequence_item;
     // Constrains DEC/INC
     if(sel_ip == ALU_INCR | sel_ip == ALU_DECR)
       data_ip_2 == 0 || data_ip_2 == 1 ;
+  }
+
+  constraint c_delay {
+    delay inside {[0:5]};
   }
 
   //  Group: Functions
